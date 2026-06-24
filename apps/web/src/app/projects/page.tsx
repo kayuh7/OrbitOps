@@ -1,4 +1,5 @@
 import ProjectCard from "@/components/ProjectCard";
+import Link from "next/dist/client/link";
 
 export default function Page() {
     const projects = [
@@ -16,6 +17,7 @@ export default function Page() {
                     projectStatus = {project.projectStatus}
                 />
             )) }
+            <Link href="/projects/new"> + New Project</Link>
         </>
     )
 }
