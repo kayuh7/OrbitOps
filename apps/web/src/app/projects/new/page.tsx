@@ -1,11 +1,6 @@
 "use client"
 import { useState } from "react"
-
-type Project = {
-    projectName: string;
-    status: string;
-    dockerImage: string;
-}
+import type {Project} from "@/types/project";
 
 export default function Page() {
     const [projectName, setProjectName] = useState("");
@@ -23,14 +18,14 @@ export default function Page() {
             return;
         }
             
-        const newProject: Project = { projectName, status, dockerImage };
+        const createProject: Project = { projectName, status, dockerImage };
             
         const response = await fetch("/api/projects", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(newProject),
+            body: JSON.stringify(createProject),
         });
 
         if (!response.ok){
@@ -54,7 +49,7 @@ export default function Page() {
                 <option value="notDeployed">Not Deployed</option>
                 <option value="archived">Archived</option>
             </select>
-            <input type="text" placeholder="Docker Image" value = {dockerImage} onChange = {(e) => setDockerImage(e.target.value)}/>
+            <input type = "text" placeholder = "Docker Image" value = {dockerImage} onChange = {(e) => setDockerImage(e.target.value)}/>
             <button onClick={addProject}>Create Project</button>
         </>
     )

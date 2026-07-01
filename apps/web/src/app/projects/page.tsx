@@ -29,7 +29,8 @@ export default function Page() {
             <h1>My Projects!</h1>
             { projects.map((project) => (
                 <ProjectCard 
-                    key={project.id}
+                    key = {project.id}
+                    id = {project.id}
                     projectName = {project.projectName}
                     projectStatus = {project.status}
                     dockerImage = {project.dockerImage}
