@@ -28,3 +28,13 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     });
     return NextResponse.json(project);
 }
+
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }>; }) {
+    const { id } = await params;
+    const deletedProject = await prisma.project.delete({
+        where: {
+            id
+        }
+    });
+    return NextResponse.json(deletedProject);
+}

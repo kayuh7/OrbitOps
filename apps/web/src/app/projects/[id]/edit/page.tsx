@@ -60,6 +60,20 @@ export default function Page() {
         router.push("/projects");
     }
 
+    async function deleteProject(){
+        const response = await fetch(`/api/projects/${params.id}`, {
+            method: "DELETE",
+        });
+
+        if (!response.ok){
+            alert("Failed to delete project");
+            return;
+        }
+
+        alert("Project deleted successfully!");
+        router.push("/projects");
+    }
+
     return(
         <>
             <h1>Edit Project!</h1>
@@ -72,6 +86,7 @@ export default function Page() {
             </select>
             <input type="text" value = {dockerImage} onChange = {(e) => setDockerImage(e.target.value)}/>
             <button onClick={editProject}>Update Project</button>
+            <button onClick={deleteProject}>Delete Project</button>
         </>
     )
 }
